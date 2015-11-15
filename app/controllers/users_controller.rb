@@ -44,6 +44,7 @@ class UsersController < ApplicationController
   end
 
 
+
   private
 
   def users_params

@@ -4,6 +4,7 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new
   end
   def index
+    @posts = Post.all
   end
   def create
     @user_session = UserSession.new(user_session_params)
@@ -20,6 +21,8 @@ class UserSessionsController < ApplicationController
       flash[:success] = "Goodbye!"
       redirect_to root_path
   end
+
+
 
   private
 

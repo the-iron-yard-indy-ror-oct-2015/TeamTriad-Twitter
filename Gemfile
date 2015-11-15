@@ -30,6 +30,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'unicorn'
 gem 'authlogic'
 gem 'faker'
+gem 'kaminari'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem "acts_as_follower"
@@ -44,4 +45,9 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+end
+
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
 end
