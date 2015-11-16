@@ -13,3 +13,39 @@
  *= require_tree .
  *= require_self
  */
+ @import "bootstrap";
+ @import "bootstrap.min";
+ @import "shop-item";
+ .success {
+   background-color: green;
+   margin-bottom: 20px;
+   color: white;
+ }
+ #custom-form {
+   width: 200px;
+ }
+ #custom-form-signup {
+   width: 600px;
+ }
+ #btn-sign-up {
+   margin-left: 10px;
+ }
+ .body-class {
+   float: right;
+ }
+ #posts-col {
+   float: left !important;
+ }
+ li:nth-child(odd) {
+     background-color: lightblue;
+     list-style-type: none;
+ }
+ li:nth-child(even) {
+     list-style-type: none;
+ }
+ nav.navbar.navbar-inverse.navbar-fixed-top {
+     background: #337AB7;
+ }
+ .navbar-brand  {
+   background: white;
+ }

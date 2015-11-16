@@ -13,6 +13,7 @@
 <div class="col-xs-4">
   <%= image_tag(@user.profile_picture) %>
 </div>
+
 </div>
 <div class="container center-block">
   <div class="col-xs-6">
@@ -23,7 +24,7 @@
       <% end %>
     </ul>
   </div>
-  <div class="col-xs-6">
+  <div class="col-xs-3">
     <h1>Following</h1>
     <ul>
       <% @user.all_following.each do |u| %>
