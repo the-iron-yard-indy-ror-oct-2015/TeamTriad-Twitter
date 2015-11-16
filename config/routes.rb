@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get '/error', to: 'shared#errors', as: :error
   get '/follow/:id', to: 'user_sessions#follow', as: :follow
 
-
+  get '/unfollow/:id', to: 'user_sessions#unfollow', as: :unfollow
 
   # Example of regular route:
   get 'posts/new' => 'posts#new'
@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   get 'posts/(:id)' => 'posts#show', as: "show"
 
   resources :my_resources do
-    get 'page/:page', :action => :index, :on => :collection 
+    get 'page/:page', :action => :index, :on => :collection
   end
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

@@ -16,6 +16,8 @@
  @import "bootstrap";
  @import "bootstrap.min";
  @import "shop-item";
+ @import "users";
+
  .success {
    background-color: green;
    margin-bottom: 20px;
@@ -31,7 +33,7 @@
    margin-left: 10px;
  }
  .body-class {
-   float: right;
+
  }
  #posts-col {
    float: left !important;
