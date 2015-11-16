@@ -1,6 +1,25 @@
-<h1>Users</h1>
-<ul>
+<h1 class="text-center">Users</h1>
+<ul class="center-block">
 <% User.all.each do |u| %>
-  <li><%= link_to u.username, user_path(id:u.id) %> <% if current_user_session %><%= link_to "edit", edit_user_path(id:u.id) %><% end %></li>
+  <div class="row">
+    <li>
+      <div class="user-row">
+        <div class="col-xs-6">
+          <h4><%= link_to u.username, user_path(id:u.id) %></h4>
+        </div>
+        <div class="col-xs-6">
+          <% if current_user == u %>
+            <%= link_to "edit", edit_user_path(id:u.id), class:"pull-right btn btn-warning" %>
+          <% elsif current_user_session && !current_user.following?(u) %>
+            <%= link_to "Follow this User", follow_path(id:u.id), class:"pull-right btn btn-primary" %>
+          <% elsif current_user_session && current_user.following?(u)%>
+            <%= link_to "Unfollow this User", unfollow_path(id:u.id), class:"pull-right btn btn-danger" %>
+          <% else %>
+            <p> Pity </p>
+          <% end %>
+        </div>
+      </div>
+    </li>
+  </div>
 <% end %>
 </ul>
