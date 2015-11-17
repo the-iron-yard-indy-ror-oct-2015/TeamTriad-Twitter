@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
 
+  before_action :require_user, only: [:new, :create, :edit, :update, :destroy]
+
   def index
   end
 
@@ -17,14 +19,14 @@ class PostsController < ApplicationController
   def new
     @posts = Post.all
     @post = Post.new
-end
+  end
   def edit
     @post = Post.find(params[:id])
     @post.save
     render :new
   end
 
-def update
+  def update
    @post = Post.find(params[:id])
    if @post.update(post_params)
      redirect_to @post
@@ -46,5 +48,6 @@ def show
     @post.save
 
   end
+
 
 end

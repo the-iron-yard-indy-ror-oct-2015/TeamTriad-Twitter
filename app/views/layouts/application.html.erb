@@ -19,7 +19,9 @@
 </head>
 <body>
   <% if flash[:success] %>
-  <center><div class="success"><%= flash[:success] %></div></center>
+    <div class="success"><p class="text-center"><%= flash[:success] %></p></div>
+  <% elsif flash[:warning] %>
+    <div class="warning"><p class="text-center"><%= flash[:warning] %></p></div>
   <% end %>
   <!-- Navigation -->
   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -99,7 +101,7 @@
 </div>
 </div>
 </div>
-<div class="col-md-6 col-md-offset-2">
+<div class="col-md-6">
 <%= yield %>
 </div>
 </body>

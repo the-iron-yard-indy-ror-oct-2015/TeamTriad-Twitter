@@ -14,8 +14,6 @@
             <%= link_to "Follow this User", follow_path(id:u.id), class:"pull-right btn btn-primary" %>
           <% elsif current_user_session && current_user.following?(u)%>
             <%= link_to "Unfollow this User", unfollow_path(id:u.id), class:"pull-right btn btn-danger" %>
-          <% else %>
-            <p> Pity </p>
           <% end %>
         </div>
       </div>

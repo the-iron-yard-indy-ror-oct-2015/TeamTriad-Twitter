@@ -1,5 +1,6 @@
 class UserSessionsController < ApplicationController
 
+  before_action :require_user, only: [:follow, :unfollow, :destroy]
 
   def new
     @user_session = UserSession.new

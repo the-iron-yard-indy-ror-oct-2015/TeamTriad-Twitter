@@ -22,6 +22,13 @@ class ApplicationController < ActionController::Base
     @current_user = current_user_session && current_user_session.user
   end
 
-  helper_method :current_user_session, :current_user
+  def require_user
+    if !current_user_session
+      flash[:warning] = "You must be logged in!"
+      redirect_to root_path
+    end
+  end
+
+  helper_method :current_user_session, :current_user, :require_user
 
 end
