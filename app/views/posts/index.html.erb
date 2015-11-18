@@ -15,7 +15,7 @@
             </h3>
             <%=raw sanitize(simple_format(p.blurb), :tags => %w(br p em) ) %>
             <p class="post-meta">Posted on <%= p.created_at %></p>
-        <% if current_user_session %>
+        <% if current_user == p.user %>
             <%= link_to "DELETE", post_path(id:p.id), :method => :destroy %>
             <%= link_to "EDIT", post_path(id:p.id), :method => :edit %>
         <% end %>
