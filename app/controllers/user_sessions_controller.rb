@@ -19,15 +19,21 @@ class UserSessionsController < ApplicationController
     user1 = current_user
     user2 = User.find(params['id'])
     user1.follow(user2)
-    redirect_to :back
+    respond_to do |format|
+    format.html { redirect_to (:back) }
+    format.js {render :action => "follow_button" }
   end
+end
 
   def unfollow
     user1 = current_user
     user2 = User.find(params['id'])
     user1.stop_following(user2)
-    redirect_to :back
+    respond_to do |format|
+    format.html { redirect_to (:back) }
+    format.js {render :action => "follow_button" }
   end
+end
 
   def destroy
       current_user_session.destroy
