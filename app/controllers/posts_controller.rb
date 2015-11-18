@@ -44,7 +44,7 @@ class PostsController < ApplicationController
    end
  end
 
-def show
+ def show
     @posts = Post.find(params[:id])
     render "post"
   end
