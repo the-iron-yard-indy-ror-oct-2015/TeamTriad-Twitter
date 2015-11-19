@@ -2,15 +2,8 @@
 <div class="thumbnail col-xs-8">
   <div class="caption-full">
     <h2><%= @user.name %></h2>
-    <% if current_user == @user %>
-      <%= link_to "edit", edit_user_path(id:@user.id), class:"btn btn-warning" %>
-    <% elsif current_user_session && !current_user.following?(@user) %>
-      <%= link_to "Follow this User", follow_path(id:@user.id), class:"btn btn-primary" %>
-    <% elsif current_user_session && current_user.following?(@user)%>
-      <%= link_to "Unfollow this User", unfollow_path(id:@user.id), class:"btn btn-danger" %>
-    <% end %>
+    <%= render partial: "shared/follow_button" -%>
     <h4>Username: <%= @user.username %></h4>
-
     <h4>Bio: </h4>
     <p><%= @user.bio %></p>
     <h4>Email: <%= mail_to @user.email %></h4>
