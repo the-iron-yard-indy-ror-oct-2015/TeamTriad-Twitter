@@ -8,13 +8,16 @@
           <h4><%= link_to u.username, user_path(id:u.id) %></h4>
         </div>
         <div class="col-xs-6">
-          <% if current_user == u %>
-            <%= link_to "edit", edit_user_path(id:u.id), class:"pull-right btn btn-warning" %>
-          <% elsif current_user_session && !current_user.following?(u) %>
-            <%= link_to "Follow this User", follow_path(id:u.id), class:"pull-right btn btn-primary" %>
-          <% elsif current_user_session && current_user.following?(u)%>
-            <%= link_to "Unfollow this User", unfollow_path(id:u.id), class:"pull-right btn btn-danger" %>
-          <% end %>
+          <div id="follow-container<%=u.id %>">
+            <% @u = u %>
+            <% if current_user == @u %>
+              <%= link_to "edit", edit_user_path(id:@u.id), class:"pull-right btn btn-warning" %>
+            <% elsif current_user_session && current_user.following?(@u) %>
+              <%= link_to "Unfollow this User",unfollow_path(id:@u.id), class:"pull-right btn btn-danger", id:"followid#{@u.id}",  remote:true %>
+            <% elsif current_user_session && !current_user.following?(@u)%>
+              <%= link_to "Follow this User", follow_path(id:@u.id), class:"pull-right btn btn-primary", id:"followid#{@u.id}", remote:true %>
+            <% end %>
+          </div>
         </div>
       </div>
     </li>

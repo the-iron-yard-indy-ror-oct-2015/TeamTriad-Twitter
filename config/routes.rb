@@ -15,9 +15,9 @@ Rails.application.routes.draw do
   get '/sign_in', to: 'user_sessions#new', as: :sign_in
   get '/users/new', to: 'users#new', as: :register
   get '/error', to: 'shared#errors', as: :error
-  get '/follow/:id', to: 'user_sessions#follow', as: :follow
+  get '/follow/:id', to: 'users#follow', as: :follow
 
-  get '/unfollow/:id', to: 'user_sessions#unfollow', as: :unfollow
+  get '/unfollow/:id', to: 'users#unfollow', as: :unfollow
 
   # Example of regular route:
   get 'posts/new' => 'posts#new'

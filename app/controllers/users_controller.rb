@@ -19,7 +19,25 @@ class UsersController < ApplicationController
     @user = User.find(params['id'])
   end
 
+  def follow
+    @user1 = current_user
+    @user2 = User.find(params['id'])
+    @user1.follow(@user2)
+    respond_to do |format|
+      format.html {redirect_to :back}
+      format.js
+    end
+  end
 
+  def unfollow
+    @user1 = current_user
+    @user2 = User.find(params['id'])
+    @user1.stop_following(@user2)
+    respond_to do |format|
+      format.html {redirect_to :back}
+      format.js
+    end
+  end
 
   def create
     @user = User.new(users_params)
