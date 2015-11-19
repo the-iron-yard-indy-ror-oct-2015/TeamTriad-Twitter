@@ -1,0 +1,11 @@
+<div class="post-preview">
+    <h3 class="post-body" style="font-weight: normal;">
+    <%= link_to post.user.username, user_path(id:post.user.id) %>
+    </h3>
+    <%=raw sanitize(simple_format(post.blurb), :tags => %w(br p em) ) %>
+    <p class="post-meta">Posted on <%= post.created_at %></p>
+<% if current_user == post.user %>
+    <%= link_to "DELETE", post_path(id:post.id), :method => :destroy %>
+    <%= link_to "EDIT", post_path(id:post.id), :method => :edit %>
+<% end %>
+</div>

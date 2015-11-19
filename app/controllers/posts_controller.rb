@@ -17,17 +17,30 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.update(user_id: current_user.id)
-    if @post.save
-      flash[:success] = "Your Post Was a Success!"
-      redirect_to root_path
-    else
-      render :new
+    respond_to do |format|
+      format.html{
+        if @post.save
+          flash[:success] = "Your Post Was a Success!"
+          redirect_to root_path
+        else
+          render :new
+        end
+      }
+      format.js{
+      }
     end
   end
 
   def new
-    @posts = Post.all
-    @post = Post.new
+    respond_to do |format|
+      format.html{
+        @posts = Post.all
+        @post = Post.new
+      }
+      format.js {
+        render :partial => "posts/newblurb"
+      }
+    end
   end
   def edit
     @post = Post.find(params[:id])
