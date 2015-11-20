@@ -12,10 +12,8 @@
   <meta name="author" content="">
 
   <!-- Bootstrap Core CSS -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-
   <!-- Custom CSS -->
-  <link href="css/shop-item.css" rel="stylesheet">
+  <!-- <link href="css/shop-item.css" rel="stylesheet"> -->
 </head>
 <body>
   <% if flash[:success] %>
@@ -58,51 +56,60 @@
       <!-- /.container -->
   </nav>
   <div class="container">
-
-      <div class="col-md-3">
-  <div class="row">
-      <p class="lead">Blurber</p>
-      <div class="list-group">
-          <a href="<%= new_post_path %>" class="list-group-item active">New Post</a>
+    <div class="col-md-3">
+      <div class="row">
+        <p class="lead">Blurber</p>
+        <div class="list-group">
+          <%= link_to "New Post", new_post_path, class:"btn btn-large btn-primary",  "data-toggle" => "modal", "data-target" => "#newblurb", "data-remote" => "false" %>
           <a href="#" class="list-group-item">Followers</a>
           <a href="#" class="list-group-item">Following</a>
+        </div>
+        <div class="login/out">
+          <% if !current_user_session %>
+            <div id="custom-form-index">
+              <div class="page-header"><h1>Sign In</h1></div>
+              <%  @user_session = UserSession.new %>
+              <%= form_for @user_session do |f| %>
+                <%#= render 'shared/errors', object: @user_session %>
+                <div class="form-group">
+                  <%= f.label :email %>
+                  <%= f.email_field :email, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :password %>
+                  <%= f.password_field :password, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :remember_me %>
+                  <%= f.check_box :remember_me %>
+                </div>
+                <%= f.submit "Log in!", class: 'btn btn-primary btn-lg' %> <button type = "button" class = "btn btn-primary btn-lg btn-sign-up" onclick="location.href='<%= register_path %>';">Sign Up!</button>
+              <% end %>
+            </div>
+          <% else %>
+          <button type = "button" class = "btn btn-primary btn-lg btn-sign-up" onclick="location.href='<%= sign_out_path %>';">Log Out!</button>
+          <% end %>
+        </div>
       </div>
-    <div class="login/out">
-    <% if !current_user_session %>
-        <center><div id="custom-form-index">
-          <div class="page-header"><h1>Sign In</h1></div>
-        <%  @user_session = UserSession.new %>
-        <%= form_for @user_session do |f| %>
-          <%#= render 'shared/errors', object: @user_session %>
+    </div>
+    <div class="col-md-6">
+      <%= yield %>
+    </div>
 
-          <div class="form-group">
-            <%= f.label :email %>
-            <%= f.email_field :email, class: 'form-control' %>
-          </div>
-
-          <div class="form-group">
-            <%= f.label :password %>
-            <%= f.password_field :password, class: 'form-control' %>
-          </div>
-
-          <div class="form-group">
-            <%= f.label :remember_me %>
-            <%= f.check_box :remember_me %>
-          </div>
-
-        <%= f.submit "Log in!", class: 'btn btn-primary btn-lg' %> <button type = "button" class = "btn btn-primary btn-lg btn-sign-up" onclick="location.href='<%= register_path %>';">Sign Up!</button>
-
-      <% end %>
+    <!-- modal -->
+    <div class="modal fade" id="newblurb" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">New Post</h4>
+        </div>
+        <div class="modal-body">
+          <% @post = Post.new %>
+          <%= render :partial => "posts/newblurb" %>
+        </div>
       </div>
-    <% else %>
-      <button type = "button" class = "btn btn-primary btn-lg btn-sign-up" onclick="location.href='<%= sign_out_path %>';">Log Out!</button>
-    <% end %>
-
-</div>
-</div>
-</div>
-<div class="col-md-6">
-<%= yield %>
-</div>
-</body>
+    </div>
+  </div>
+  </body>
 </html>

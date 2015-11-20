@@ -1,0 +1,4 @@
+$('#newblurb').modal('toggle');
+$('.alert').remove();
+$('#blurb-feed').prepend("<%=j render :partial => 'posts/post', locals: {post: @post} %>");
+$('#blurb-box').val("");

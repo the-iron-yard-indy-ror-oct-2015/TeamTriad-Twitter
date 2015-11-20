@@ -1,0 +1,2 @@
+$('#followid<%= @user2.id %>').remove()
+$('#follow-container<%=@user2.id%>').append('<%= link_to "Unfollow this User", unfollow_path(id:@user2.id), class:"pull-right btn btn-danger", id:"followid#{@user2.id}", remote:true %>');

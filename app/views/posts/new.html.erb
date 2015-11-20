@@ -10,25 +10,12 @@
     <% end %>
   </div>
   <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <div class="col-lg-8 col-md-10 col-md-offset-1">
       <% if params[:action] == "new" || params[:action] == "create" %>
-        <h2 class="post-title">New post</h1>
+        <h2 class="post-title">New Blurb</h1>
       <% else %>
-        <h2 class="post-title">Edit post</h1>
+        <h2 class="post-title">Edit Blurb</h1>
       <% end %>
-
-      <%= form_for @post do |f| %>
-      <div style="padding-bottom: 10px;" class="form_group">
-        <%= f.text_area :blurb, size: "60x12" %>
-      </div>
-      <%#= f.text_area :blurb, size: "60x12" %>
-      <% @posts = Post.all %>
-      <% @posts.each do |p| %>
-      <% p.user_id %>
-      <% end %>
-      <%# if current_user_session %>
-      <h6><form name="myForm" action="<%= new_post_path %>" method="get">
-      <input type="submit" value="SAVE">
-      </form></h6> <% end %>
+      <%= render "newblurb" %>
     </div>
   </div>
